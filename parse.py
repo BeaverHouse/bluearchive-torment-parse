@@ -24,7 +24,11 @@ for idx, name in enumerate(book.sheetnames):
 
     offset = 1 if idx>=2 else 0
 
-    total_json = []
+    # 전체 사용된 캐릭터 필터 저장용
+    filters = []
+
+    # 전체 파티 저장용
+    total_partys = []
 
     sheet = book[name]
 
@@ -73,6 +77,7 @@ for idx, name in enumerate(book.sheetnames):
             total_char_dic[char] = total_char_dic.get(char, 0) + 1
         
         dic["characters"] = list(total_char_dic.keys())
+        filters = list(set(filters + dic["characters"]))
         
         # 2번쓰면 무조건 조력자
         for char in total_char_dic.keys():
@@ -81,7 +86,12 @@ for idx, name in enumerate(book.sheetnames):
                 break
 
         print(".", end="")
-        total_json.append(dic)
+        total_partys.append(dic)
+    
+    total_json = {
+        "filter": filters,
+        "partys": total_partys
+    }
 
     # JSON 저장
     with open("{}.json".format(name.split()[0]), "w", encoding='utf-8') as f:
