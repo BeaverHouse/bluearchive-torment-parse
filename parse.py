@@ -24,11 +24,14 @@ for idx, name in enumerate(book.sheetnames):
 
     offset = 1 if idx>=2 else 0
 
-    # 전체 사용된 캐릭터 필터 저장용
+    # 캐릭터 필터 저장용
     filters = []
+    assist_filters = []
 
     # 전체 파티 저장용
     total_partys = []
+    max_party_cnt = -1
+    min_party_cnt = 1000
 
     sheet = book[name]
 
@@ -70,6 +73,8 @@ for idx, name in enumerate(book.sheetnames):
 
         dic["partys"] = partys
         dic["party_count"] = len(partys)
+        if len(partys) > max_party_cnt: max_party_cnt = len(partys)
+        if len(partys) < min_party_cnt: min_party_cnt = len(partys)
 
         # 캐릭터 사용현황 dict에 정리
         total_char_dic = {}
@@ -83,6 +88,8 @@ for idx, name in enumerate(book.sheetnames):
         for char in total_char_dic.keys():
             if total_char_dic.get(char, 0) == 2:
                 dic["assist"] = char
+                if char not in assist_filters:
+                    assist_filters.append(char)
                 break
 
         print(".", end="")
@@ -90,7 +97,10 @@ for idx, name in enumerate(book.sheetnames):
     
     total_json = {
         "filter": filters,
-        "partys": total_partys
+        "assist_filter": assist_filters,
+        "partys": total_partys,
+        "min_party": min_party_cnt,
+        "max_party": max_party_cnt
     }
 
     # JSON 저장
