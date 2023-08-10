@@ -2,7 +2,7 @@ from openpyxl import load_workbook
 from openpyxl.cell import Cell
 import json
 
-book = load_workbook("data.xlsx", data_only=True)
+book = load_workbook("rawdata/data.xlsx", data_only=True)
 
 # 빈 셀 확인하는 함수
 def is_cell_blank(cell: Cell) -> bool:
