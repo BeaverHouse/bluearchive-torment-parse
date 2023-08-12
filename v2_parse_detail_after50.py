@@ -116,7 +116,7 @@ for season in seasons:
                 specials.append({
                     "name": name,
                     "star": int(star) if not is_cell_blank(star) else -1,
-                    "assist": True if is_assist == "TRUE" else False
+                    "assist": True if is_assist.upper() == "TRUE" else False
                 })
                 if len(name) > 0: 
                     temp_char_array.append(name)
