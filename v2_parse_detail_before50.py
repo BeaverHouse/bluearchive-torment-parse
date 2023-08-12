@@ -33,6 +33,8 @@ for season in seasons:
     # 캐릭터 필터 저장용
     filters = []
     assist_filters = []
+    under3_filters = []
+    under4_filters = []
 
     # 전체 파티 저장용
     total_partys = []
@@ -62,6 +64,9 @@ for season in seasons:
         i = 0
         partys = []
 
+        under3_list = []
+        under4_list = []
+
         # 전체 캐릭명 저장할 임시 array
         temp_char_array = []
             
@@ -77,6 +82,12 @@ for season in seasons:
                 if is_assist.upper() == "TRUE":
                     dic["assist"] = name
                     assist_filters.append(name)
+                if not is_cell_blank(star) and int(star) <= 4:
+                    under4_list.append(name)
+                    under4_filters.append(name)
+                if not is_cell_blank(star) and int(star) <= 3:
+                    under3_list.append(name)
+                    under3_filters.append(name)
                 strikers.append({
                     "name": name,
                     "star": int(star) if not is_cell_blank(star) else -1,
@@ -94,6 +105,12 @@ for season in seasons:
                 if is_assist.upper() == "TRUE":
                     dic["assist"] = name
                     assist_filters.append(name)
+                if not is_cell_blank(star) and int(star) <= 4:
+                    under4_list.append(name)
+                    under4_filters.append(name)
+                if not is_cell_blank(star) and int(star) <= 3:
+                    under3_list.append(name)
+                    under3_filters.append(name)
                 specials.append({
                     "name": name,
                     "star": int(star) if not is_cell_blank(star) else -1,
@@ -111,6 +128,8 @@ for season in seasons:
 
         dic["partys"] = partys
         dic["party_count"] = len(partys)
+        dic["under3"] = list(set(under3_list))
+        dic["under4"] = list(set(under4_list))
         if len(partys) > max_party_cnt: max_party_cnt = len(partys)
         if len(partys) < min_party_cnt: min_party_cnt = len(partys)
 
@@ -121,15 +140,15 @@ for season in seasons:
             
         dic["characters"] = list(total_char_dic.keys())
         filters = list(set(filters + dic["characters"]))
-            
-        assist_filters = list(set(assist_filters))
 
         print(".", end="")
         total_partys.append(dic)
         
     total_json = {
         "filter": filters,
-        "assist_filter": assist_filters,
+        "assist_filter": list(set(assist_filters)),
+        "under4_filter": list(set(under4_filters)),
+        "under3_filter": list(set(under3_filters)),
         "partys": total_partys,
         "min_party": min_party_cnt,
         "max_party": max_party_cnt
