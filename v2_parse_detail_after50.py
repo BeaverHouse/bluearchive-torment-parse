@@ -134,8 +134,8 @@ for season in seasons:
 
         dic["partys"] = partys
         dic["party_count"] = len(partys)
-        dic["under3"] = list(set(under3_list))
-        dic["under4"] = list(set(under4_list))
+        dic["under3"] = sorted(list(set(under3_list)))
+        dic["under4"] = sorted(list(set(under4_list)))
         if len(partys) > max_party_cnt: max_party_cnt = len(partys)
         if len(partys) < min_party_cnt: min_party_cnt = len(partys)
 
@@ -144,17 +144,17 @@ for season in seasons:
         for char in temp_char_array:
             total_char_dic[char] = total_char_dic.get(char, 0) + 1
             
-        dic["characters"] = list(total_char_dic.keys())
-        filters = list(set(filters + dic["characters"]))
+        dic["characters"] = sorted(list(total_char_dic.keys()))
+        filters =           sorted(list(set(filters + dic["characters"])))
 
         print(".", end="")
         total_partys.append(dic)
         
     total_json = {
         "filter": filters,
-        "assist_filter": list(set(assist_filters)),
-        "under4_filter": list(set(under4_filters)),
-        "under3_filter": list(set(under3_filters)),
+        "assist_filter": sorted(list(set(assist_filters))),
+        "under4_filter": sorted(list(set(under4_filters))),
+        "under3_filter": sorted(list(set(under3_filters))),
         "partys": total_partys,
         "min_party": min_party_cnt,
         "max_party": max_party_cnt
