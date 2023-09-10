@@ -20,10 +20,11 @@ def get_char_name(id) -> str:
     return char_json[str(id)] if not is_cell_blank(id) else ""
 
 seasons = [
-    # "B1",
-    # "S50", "S51", "S52", "S53", "S54",
-    # "S55", "S56"
+    "B1",
+    "S50", "S51", "S52", "S53", "S54",
+    "S55", "S56",
     "3S1-T"
+    # "3S1-I"
 ]
 
 with open('character.json', encoding='utf-8') as f:
