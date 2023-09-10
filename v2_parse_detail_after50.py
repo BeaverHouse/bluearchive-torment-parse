@@ -100,7 +100,7 @@ for season in seasons:
                     "star": int(star) if not is_cell_blank(star) else -1,
                     "assist": True if is_assist.upper() == "TRUE" else False
                 })
-                if len(name) > 0: 
+                if len(name) > 0 and is_assist.upper() != "TRUE": 
                     temp_char_array.append(name)
 
             specials = []
@@ -123,7 +123,7 @@ for season in seasons:
                     "star": int(star) if not is_cell_blank(star) else -1,
                     "assist": True if is_assist.upper() == "TRUE" else False
                 })
-                if len(name) > 0: 
+                if len(name) > 0 and is_assist.upper() != "TRUE": 
                     temp_char_array.append(name)
 
             party["strikers"] = strikers
