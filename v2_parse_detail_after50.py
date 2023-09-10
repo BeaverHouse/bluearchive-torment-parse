@@ -22,7 +22,7 @@ def get_char_name(id) -> str:
 seasons = [
     "B1",
     "S50", "S51", "S52", "S53", "S54",
-    "S55", "S56",
+    "S55", "S56", "S57",
     "3S1-T"
     # "3S1-I"
 ]
