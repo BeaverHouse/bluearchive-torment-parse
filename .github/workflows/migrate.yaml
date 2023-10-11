@@ -1,0 +1,19 @@
+name: Migrate to bluearchive-torment-front
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    name: A job to migrate date
+    steps:
+      - uses: actions/checkout@v4
+      - uses: BeaverHouse/migrate-github-actions@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          app-type: 'bluearchive-torment'
