@@ -20,7 +20,7 @@ def get_char_name(id) -> str:
     return char_json[str(id)] if not is_cell_blank(id) else ""
 
 seasons = [
-    "S58"
+    "3S3-T"
 ]
 
 with open('character.json', encoding='utf-8') as f:
@@ -50,7 +50,7 @@ for season in seasons:
         dic = {}
 
         # 위에서부터 자르기
-        if idx > 1500: break
+        # if idx > 1500: break
 
         if is_cell_blank(row[0]): break
         
