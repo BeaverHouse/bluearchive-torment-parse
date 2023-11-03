@@ -160,6 +160,3 @@ for season in seasons:
     # JSON 저장
     with open("result_detail/{}.json".format(season), "w", encoding='utf-8') as f:
         json.dump(total_json, f, indent=2, ensure_ascii=False)
-
-
-
