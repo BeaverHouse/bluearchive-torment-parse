@@ -1,13 +1,13 @@
 import requests
 import os
+import win11toast
+from sys import platform
 
 baseURL = "https://storage.googleapis.com/info.herdatasam.me"
 types = ["폭발", "관통", "신비"]
 
 def get_csv(category: str, type: str, season: int):
     os.makedirs("rawdetail", exist_ok=True)
-
-    print(category, type, season)
 
     url, file_name = "", ""
     if category == "총력전":
@@ -20,13 +20,17 @@ def get_csv(category: str, type: str, season: int):
     
     with open(f"rawdetail/{file_name}", "wb") as f:
         res = requests.get(url)
-        f.write(res.content)
+        if res.ok:
+            f.write(res.content)
+            # 로컬 알림용, 주석처리해도 무방
+            if platform == "win32":
+                win11toast.toast(f"정보가 업데이트되었습니다: {category}, {type}, S{season}")
 
 
 if __name__ == "__main__":
-    category = input("총력전 / 대결전 : ")
-    if category == "대결전":
-        type = input("토먼트 속성 : ")
-    season = int(input("시즌 숫자 : "))
+    category: str   = "총력전"
+    type: str       = "관통"
+    season: int     = 59            # 총력전
+    # season: int     = 3            # 대결전
     
     get_csv(category=category, type=type, season=season)
