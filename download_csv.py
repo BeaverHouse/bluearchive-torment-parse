@@ -18,9 +18,9 @@ def get_csv(category: str, type: str, season: int):
         file_name = f"3S{season}-TD.csv"
         url = f"{baseURL}/BlueArchiveJP/RaidRankDataER/S{season}/TeamDataDetailBoss{type_idx}_Original.csv"
     
-    with open(f"rawdetail/{file_name}", "wb") as f:
-        res = requests.get(url)
-        if res.ok:
+    res = requests.get(url)
+    if res.ok:
+        with open(f"rawdetail/{file_name}", "wb") as f:
             f.write(res.content)
             # 로컬 알림용, 주석처리해도 무방
             if platform == "win32":

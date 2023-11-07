@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 
 # 빈 셀 확인하는 함수
 def is_cell_blank(value) -> bool:
@@ -26,8 +27,8 @@ seasons = [
 with open('character.json', encoding='utf-8') as f:
     char_json = json.load(f)
 
-for season in seasons:
-    f_csv = open("rawdetail/{}D.csv".format(season),'r')
+for file in os.listdir('rawdetail'):
+    f_csv = open(f"rawdetail/{file}",'r')
     reader = csv.reader(f_csv)
 
     # 캐릭터 필터 저장용
@@ -158,5 +159,5 @@ for season in seasons:
     }
 
     # JSON 저장
-    with open("result_detail/{}.json".format(season), "w", encoding='utf-8') as f:
+    with open(f"result_detail/{file.replace("D.csv", "")}.json", "w", encoding='utf-8') as f:
         json.dump(total_json, f, indent=2, ensure_ascii=False)
