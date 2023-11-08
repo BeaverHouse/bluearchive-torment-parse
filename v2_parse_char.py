@@ -17,7 +17,7 @@ with open("character.json", "w", encoding='utf-8') as f:
     json.dump(result, f, indent=2, ensure_ascii=False)
 
 
-os.makedirs("image")
+os.makedirs("image", exist_ok=True)
 
 # IMG 저장
 # https://raw.githubusercontent.com/lonqie/SchaleDB/main/images/student/icon/10000.webp

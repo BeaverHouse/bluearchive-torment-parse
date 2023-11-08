@@ -51,7 +51,7 @@ for file in os.listdir('rawdetail'):
         dic = {}
 
         # 위에서부터 자르기
-        # if idx > 1500: break
+        if idx > 1500: break
 
         if is_cell_blank(row[0]): break
         
