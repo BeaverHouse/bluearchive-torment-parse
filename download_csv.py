@@ -1,6 +1,7 @@
 import requests
 import os
 import win11toast
+from v2_parse_detail_after50 import parse_main
 from sys import platform
 
 baseURL = "https://storage.googleapis.com/info.herdatasam.me"
@@ -22,15 +23,19 @@ def get_csv(category: str, type: str, season: int):
     if res.ok:
         with open(f"rawdetail/{file_name}", "wb") as f:
             f.write(res.content)
-            # 로컬 알림용, 주석처리해도 무방
-            if platform == "win32":
-                win11toast.toast(f"정보가 업데이트되었습니다: {category}, {type}, S{season}")
+
+        parse_main()
+
+        # 로컬 알림용, 주석처리해도 무방
+        if platform == "win32":
+            win11toast.toast(f"정보가 업데이트되었습니다: {category}, {type}, S{season}")
 
 
 if __name__ == "__main__":
+    # 대결전 중장갑 호드 23.11.15. ~ 23.11.22.
     category: str   = "총력전"
-    type: str       = "관통"
-    season: int     = 59            # 총력전
-    # season: int     = 3            # 대결전
+    type: str       = "관통"         
+    # season: int     = 999            # 총력전
+    season: int     = 59            # 대결전
     
     get_csv(category=category, type=type, season=season)
