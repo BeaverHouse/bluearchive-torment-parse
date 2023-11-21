@@ -33,9 +33,9 @@ def get_csv(category: str, type: str, season: int):
 
 if __name__ == "__main__":
     # 대결전 중장갑 호드 23.11.15. ~ 23.11.22.
-    category: str   = "총력전"
+    category: str   = "대결전"
     type: str       = "관통"         
     # season: int     = 999            # 총력전
-    season: int     = 59            # 대결전
+    season: int     = 4            # 대결전
     
     get_csv(category=category, type=type, season=season)
