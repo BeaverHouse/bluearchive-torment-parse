@@ -158,3 +158,7 @@ def parse_main():
         # JSON 저장
         with open(f"result_detail/{file.replace("D.csv", "")}.json", "w", encoding='utf-8') as f:
             json.dump(total_json, f, indent=2, ensure_ascii=False)
+
+
+if __name__ == "__main__":
+    parse_main()
