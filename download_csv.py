@@ -32,10 +32,10 @@ def get_csv(category: str, type: str, season: int):
 
 
 if __name__ == "__main__":
-    # 총력전 묘우키 쿠로카게
-    category: str   = "총력전"
-    type: str       = "진동"         
-    season: int     = 60            # 총력전
-    # season: int     = 4            # 대결전
+    # 대결전 관통 야외 고즈
+    category: str   = "대결전"
+    type: str       = "관통"         
+    # season: int     = 60            # 총력전
+    season: int     = 5            # 대결전
     
     get_csv(category=category, type=type, season=season)
